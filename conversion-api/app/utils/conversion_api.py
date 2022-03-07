@@ -21,10 +21,8 @@ async def get_xml_banxico():
     df = df.loc[0:2]
     array = df.to_numpy()
     split_str = str(array[0]).split(" ")
-    print(split_str)
     banxico_xml = split_str[16]
     banxico_xml_value = split_str[20]
-    print(banxico_xml)
     return banxico_xml,banxico_xml_value
 
 
