@@ -1,6 +1,7 @@
 
 
-from utils.conversion_api import get_fixer,get_xml_banxico, get_api_banxico
+#from utils.conversion_api import get_fixer,get_xml_banxico, get_api_banxico
+import utils
 from typing import Optional
 from datetime import datetime, timedelta,date
 from fastapi import Depends, FastAPI, HTTPException, status
@@ -134,7 +135,7 @@ async def get_mexican_conversion(current_user: User = Depends(get_current_active
 
     print(current_user.username)
     access_log= pd.read_csv("./db/access_log.csv")
-    # print(access_log)
+  
     today = date.today()
     
     check_login =access_log.loc[(access_log['username'] == current_user.username) & (access_log['date'] == str(today))]
@@ -153,15 +154,15 @@ async def get_mexican_conversion(current_user: User = Depends(get_current_active
     
 
     """ Call method async  fixer api to get values """
-    fixer_api,value_fixer_api = await get_fixer()
+    fixer_api,value_fixer_api = await utils.conversion_api.get_fixer()
 
     """ Call method async banxico xml to get values"""
 
-    banxico_xml, banxico_xml_value = await get_xml_banxico()
+    banxico_xml, banxico_xml_value = await utils.conversion_api.get_xml_banxico()
     
     """ Call method async banxico api rest to get values"""
 
-    value_banxico_api, date_banxico_api= await get_api_banxico()
+    value_banxico_api, date_banxico_api= await utils.conversion_api.get_api_banxico()
         
     response = {
             "rates": {

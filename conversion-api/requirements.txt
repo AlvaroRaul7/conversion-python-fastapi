@@ -1,5 +1,11 @@
-
 fastapi>=0.68.0,<0.69.0
 pydantic>=1.8.0,<2.0.0
 uvicorn>=0.15.0,<0.16.0
-SQLAlchemy
+passlib[bcrypt]
+python-jose[cryptography]
+python-multipart
+pandas
+typing
+requests
+lxml
+pytest
