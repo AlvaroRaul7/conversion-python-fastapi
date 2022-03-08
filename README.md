@@ -72,7 +72,9 @@ else:
 
 Deployed in AWS EC2 like a docker container:
 
+Open:
 
+http://35.172.227.213:4300/docs
 
 ## Future considerations
 
